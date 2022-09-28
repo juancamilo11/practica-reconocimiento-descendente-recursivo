@@ -1,0 +1,18 @@
+{
+  "name": "roman-numbers-app",
+  "version": "1.0.0",
+  "description": "Aplicación para la solución de la actividad Números romanos.",
+  "author": "Juan Camilo Cardona Calderón",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "inquirer": "^7.3.3",
+    "roman-numbers": "^1.0.2",
+    "uuid": "^8.3.2"
+  }
+}

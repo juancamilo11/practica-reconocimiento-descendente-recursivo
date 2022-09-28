@@ -1,0 +1,130 @@
+[
+    {
+        "transition": "T1",
+        "description": "Pase a S3, apile L, avance."
+    },
+    {
+        "transition": "T2",
+        "description": "Permanezca en S3, replace (L , X1), avance."
+    },
+    {
+        "transition": "T3",
+        "description": "Permanezca en S3, replace (X1 , X2), avance."
+    },
+    {
+        "transition": "T4",
+        "description": "Permanezca en S3, replace (X2 , X3), avance."
+    },
+    {
+        "transition": "T5",
+        "description": "Permanezca en S3, replace (L , V), avance."
+    },
+    {
+        "transition": "T6",
+        "description": "Permanezca en S3, replace (X1 , V), avance."
+    },
+    {
+        "transition": "T7",
+        "description": "Permanezca en S3, replace (X2 , V), avance."
+    },
+    {
+        "transition": "T8",
+        "description": "Permanezca en S3, replace (X3 , V), avance."
+    },
+    {
+        "transition": "T9",
+        "description": "Permanezca en S1, apile X1, avance."
+    },
+    {
+        "transition": "T10",
+        "description": "Permanezca en S1, apile V, avance."
+    },
+    {
+        "transition": "T11",
+        "description": "Permanezca en S1, apile I1, avance."
+    },
+    {
+        "transition": "T12",
+        "description": "Pase a S2, replace (I1 , X1), avance."
+    },
+    {
+        "transition": "T13",
+        "description": "Pase a S2, replace (I1 , V), avance."
+    },
+    {
+        "transition": "T14",
+        "description": "Permanezca en S3, replace (I1 , I2), avance."
+    },
+    {
+        "transition": "T15",
+        "description": "Permanezca en S3, replace (I2 , I3), avance."
+    },
+    {
+        "transition": "T16",
+        "description": "Permanezca en S3, replace (L , I1), avance."
+    },
+    {
+        "transition": "T17",
+        "description": "Permanezca en S3, replace (X1 , I1), avance."
+    },
+    {
+        "transition": "T18",
+        "description": "Permanezca en S3, replace (X2 , I1), avance."
+    },
+    {
+        "transition": "T19",
+        "description": "Permanezca en S3, replace (x3 , I1), avance."
+    },
+    {
+        "transition": "T20",
+        "description": "Permanezca en S3, replace (V , I1), avance."
+    },
+    {
+        "transition": "T21",
+        "description": "Pase a S3, replace (X1 , L), avance."
+    },
+    {
+        "transition": "T22",
+        "description": "Permanezca en S1, replace (X1 , X2), avance."
+    },
+    {
+        "transition": "T23",
+        "description": "Permanezca en S1, replace (X1 , V), avance."
+    },
+    {
+        "transition": "T24",
+        "description": "Permanezca en S1,  replace (X1 , I1), avance."
+    },
+    {
+        "transition": "T25",
+        "description": "Permanezca en S1, replace (X2 , X3), avance."
+    },
+    {
+        "transition": "T26",
+        "description": "Permanezca en S1, replace (X2 , V), avance."
+    },
+    {
+        "transition": "T27",
+        "description": "Permanezca en S1, replace (X2 , I1), avance."
+    },
+    {
+        "transition": "T28",
+        "description": "Permanezca en S1, replace (X3 , V), avance."
+    },
+    {
+        "transition": "T29",
+        "description": "Permanezca en S1, replace (x3 , I1), avance."
+    },
+    {
+        "transition": "T30",
+        "description": "Permanezca en S1, replace (V , I1), avance."
+    },
+    {
+        "transition": "T31",
+        "description": "Permanezca en S1, replace (I1 , I2), avance."
+    },
+    {
+        "transition": "T32",
+        "description": "Permanezca en S1, replace (I2 , I3), avance."
+    }
+]

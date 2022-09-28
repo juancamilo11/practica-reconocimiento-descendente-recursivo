@@ -1,0 +1,358 @@
+[
+    {
+        "arab": 1,
+        "roman": "I"
+    },
+    {
+        "arab": 2,
+        "roman": "II"
+    },
+    {
+        "arab": 3,
+        "roman": "III"
+    },
+    {
+        "arab": 4,
+        "roman": "IV"
+    },
+    {
+        "arab": 5,
+        "roman": "V"
+    },
+    {
+        "arab": 6,
+        "roman": "VI"
+    },
+    {
+        "arab": 7,
+        "roman": "VII"
+    },
+    {
+        "arab": 8,
+        "roman": "VIII"
+    },
+    {
+        "arab": 9,
+        "roman": "IX"
+    },
+    {
+        "arab": 10,
+        "roman": "X"
+    },
+    {
+        "arab": 11,
+        "roman": "XI"
+    },
+    {
+        "arab": 12,
+        "roman": "XII"
+    },
+    {
+        "arab": 13,
+        "roman": "XIII"
+    },
+    {
+        "arab": 14,
+        "roman": "XIV"
+    },
+    {
+        "arab": 15,
+        "roman": "XV"
+    },
+    {
+        "arab": 16,
+        "roman": "XVI"
+    },
+    {
+        "arab": 17,
+        "roman": "XVII"
+    },
+    {
+        "arab": 18,
+        "roman": "XVIII"
+    },
+    {
+        "arab": 19,
+        "roman": "XIX"
+    },
+    {
+        "arab": 20,
+        "roman": "XX"
+    },
+    {
+        "arab": 21,
+        "roman": "XXI"
+    },
+    {
+        "arab": 22,
+        "roman": "XXII"
+    },
+    {
+        "arab": 23,
+        "roman": "XXIII"
+    },
+    {
+        "arab": 24,
+        "roman": "XXIV"
+    },
+    {
+        "arab": 25,
+        "roman": "XXV"
+    },
+    {
+        "arab": 26,
+        "roman": "XXVI"
+    },
+    {
+        "arab": 27,
+        "roman": "XXVII"
+    },
+    {
+        "arab": 28,
+        "roman": "XXVIII"
+    },
+    {
+        "arab": 29,
+        "roman": "XXIX"
+    },
+    {
+        "arab": 30,
+        "roman": "XXX"
+    },
+    {
+        "arab": 31,
+        "roman": "XXXI"
+    },
+    {
+        "arab": 32,
+        "roman": "XXXII"
+    },
+    {
+        "arab": 33,
+        "roman": "XXXIII"
+    },
+    {
+        "arab": 34,
+        "roman": "XXXIV"
+    },
+    {
+        "arab": 35,
+        "roman": "XXXV"
+    },
+    {
+        "arab": 36,
+        "roman": "XXXVI"
+    },
+    {
+        "arab": 37,
+        "roman": "XXXVII"
+    },
+    {
+        "arab": 38,
+        "roman": "XXXVIII"
+    },
+    {
+        "arab": 39,
+        "roman": "XXXIX"
+    },
+    {
+        "arab": 40,
+        "roman": "XL"
+    },
+    {
+        "arab": 41,
+        "roman": "XLI"
+    },
+    {
+        "arab": 42,
+        "roman": "XLII"
+    },
+    {
+        "arab": 43,
+        "roman": "XLIII"
+    },
+    {
+        "arab": 44,
+        "roman": "XLIV"
+    },
+    {
+        "arab": 45,
+        "roman": "XLV"
+    },
+    {
+        "arab": 46,
+        "roman": "XLVI"
+    },
+    {
+        "arab": 47,
+        "roman": "XLVII"
+    },
+    {
+        "arab": 48,
+        "roman": "XLVIII"
+    },
+    {
+        "arab": 49,
+        "roman": "XLIX"
+    },
+    {
+        "arab": 50,
+        "roman": "L"
+    },
+    {
+        "arab": 51,
+        "roman": "LI"
+    },
+    {
+        "arab": 52,
+        "roman": "LII"
+    },
+    {
+        "arab": 53,
+        "roman": "LIII"
+    },
+    {
+        "arab": 54,
+        "roman": "LIV"
+    },
+    {
+        "arab": 55,
+        "roman": "LV"
+    },
+    {
+        "arab": 56,
+        "roman": "LVI"
+    },
+    {
+        "arab": 57,
+        "roman": "LVII"
+    },
+    {
+        "arab": 58,
+        "roman": "LVIII"
+    },
+    {
+        "arab": 59,
+        "roman": "LIX"
+    },
+    {
+        "arab": 60,
+        "roman": "LX"
+    },
+    {
+        "arab": 61,
+        "roman": "LXI"
+    },
+    {
+        "arab": 62,
+        "roman": "LXII"
+    },
+    {
+        "arab": 63,
+        "roman": "LXIII"
+    },
+    {
+        "arab": 64,
+        "roman": "LXIV"
+    },
+    {
+        "arab": 65,
+        "roman": "LXV"
+    },
+    {
+        "arab": 66,
+        "roman": "LXVI"
+    },
+    {
+        "arab": 67,
+        "roman": "LXVII"
+    },
+    {
+        "arab": 68,
+        "roman": "LXVIII"
+    },
+    {
+        "arab": 69,
+        "roman": "LXIX"
+    },
+    {
+        "arab": 70,
+        "roman": "LXX"
+    },
+    {
+        "arab": 71,
+        "roman": "LXXI"
+    },
+    {
+        "arab": 72,
+        "roman": "LXXII"
+    },
+    {
+        "arab": 73,
+        "roman": "LXXIII"
+    },
+    {
+        "arab": 74,
+        "roman": "LXXIV"
+    },
+    {
+        "arab": 75,
+        "roman": "LXXV"
+    },
+    {
+        "arab": 76,
+        "roman": "LXXVI"
+    },
+    {
+        "arab": 77,
+        "roman": "LXXVII"
+    },
+    {
+        "arab": 78,
+        "roman": "LXXVIII"
+    },
+    {
+        "arab": 79,
+        "roman": "LXXIX"
+    },
+    {
+        "arab": 80,
+        "roman": "LXXX"
+    },
+    {
+        "arab": 81,
+        "roman": "LXXXI"
+    },
+    {
+        "arab": 82,
+        "roman": "LXXXII"
+    },
+    {
+        "arab": 83,
+        "roman": "LXXXIII"
+    },
+    {
+        "arab": 84,
+        "roman": "LXXXIV"
+    },
+    {
+        "arab": 85,
+        "roman": "LXXXV"
+    },
+    {
+        "arab": 86,
+        "roman": "LXXXVI"
+    },
+    {
+        "arab": 87,
+        "roman": "LXXXVII"
+    },
+    {
+        "arab": 88,
+        "roman": "LXXXVIII"
+    },
+    {
+        "arab": 89,
+        "roman": "LXXXIX"
+    }
+]
