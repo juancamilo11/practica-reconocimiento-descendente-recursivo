@@ -1,7 +1,6 @@
-const RomanQueue = require("./RomanQueue");
-const { romanToArab } = require("roman-numbers");
+const RomanQueue = require("./ArithmeticQueue");
 
-class RomanUtils {
+class ArithmeticUtils {
   romanQueue = new RomanQueue();
 
   state = "S1"; // S1 is the initial state
@@ -814,4 +813,4 @@ class RomanUtils {
   }
 }
 
-module.exports = RomanUtils;
+module.exports = ArithmeticUtils;

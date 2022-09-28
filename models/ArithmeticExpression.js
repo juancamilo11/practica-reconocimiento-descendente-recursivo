@@ -1,16 +1,16 @@
 const { v4: uudiv4 } = require("uuid");
-const RomanUtils = require("../helpers/RomanUtils");
+const ArithmeticExpressionUtils = require("../helpers/ArithmeticUtils");
 
-class RomanNumber {
+class ArithmeticExpression {
   id = "";
   roman = "";
   decimal = "";
   isValid = false;
 
-  romanUtils = new RomanUtils();
+  romanUtils = new ArithmeticExpressionUtils();
 
   constructor(roman) {
-    this.romanUtils = new RomanUtils();
+    this.romanUtils = new ArithmeticExpressionUtils();
     this.id = uudiv4();
     const [romanNumber, decimal, isValid] =
       this.romanUtils.evaluateRomanNumber(roman);
@@ -33,4 +33,4 @@ class RomanNumber {
   }
 }
 
-module.exports = RomanNumber;
+module.exports = ArithmeticExpression;

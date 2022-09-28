@@ -9,25 +9,21 @@ const preguntas = [
     choices: [
       {
         value: "1",
-        name: `${"1.".green} Add a roman number`,
+        name: `${"1.".green} Input an arithmetic expression`,
       },
       {
         value: "2",
-        name: `${"2.".green} See full list of roman numbers`,
+        name: `${"2.".green} See full list of arithmetic expressions`,
       },
       {
         value: "3",
-        name: `${"3.".green} See the transitions table used for the solution`,
-      },
-      {
-        value: "4",
-        name: `${"4.".green} Test all valid numbers`,
+        name: `${"3.".green} See the resources used for the solution`,
       },
       {
         value: "0",
         name: `${
           "0.".green
-        } Quit (And generate JSON file with your roman numbers)`,
+        } Quit (And generate JSON file with a report of your arithmetic expressions)`,
       },
     ],
   },
