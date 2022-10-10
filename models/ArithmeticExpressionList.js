@@ -8,7 +8,7 @@ class ArithmeticExpressionList {
   }
 
   addArithmeticExpression(expression) {
-    const arithmeticExpression = new RomanNumber(expression);
+    const arithmeticExpression = new ArithmeticExpression(expression);
     this.arithmeticExpressions.push(arithmeticExpression);
   }
 

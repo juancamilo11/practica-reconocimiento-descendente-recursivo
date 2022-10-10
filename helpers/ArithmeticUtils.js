@@ -1,15 +1,16 @@
-const RomanQueue = require("./ArithmeticQueue");
+const ArithmeticExpStack = require("./ArithmeticStack");
+require("colors");
 
 class ArithmeticUtils {
-  romanQueue = new RomanQueue();
+  constructor() {
+    this.arithmeticQueue = new ArithmeticExpStack();
 
-  state = "S1"; // S1 is the initial state
-  inputValues = { L: "", X: "", V: "", I: "" };
+    this.state = "▼"; // ▼ is the initial state
+    this.inputValues = { L: "", X: "", V: "", I: "" };
+  }
 
-  constructor() {}
-
-  getComputedRomanCharacters(characters) {
-    return characters.trim().toUpperCase().replaceAll(" ", "");
+  getComputedArithmeticExpressionCharacters(characters) {
+    return characters.trim().replaceAll(" ", "");
   }
 
   getBadInputCharacter() {
@@ -21,35 +22,40 @@ class ArithmeticUtils {
   }
 
   showBadNumberMessage(index, characters) {
-    console.log(`\n¡El número romano no es válido!`.bgRed);
+    console.log(`\n ¡The arithmetic expression is not valid! `.bgRed);
     console.log(
-      `character ${this.getBadInputCharacter()} in position ${
+      ` character ${this.getBadInputCharacter()} in position ${
         index + 1
-      } has provoked the error`.red
+      } has provoked the error `.red
     );
     return [characters.concat("┤"), "Invalid", false];
   }
 
   showInconsistentNumberMessage(characters) {
-    console.log(`¡The number is not valid!`.bgRed);
-    console.log(`Something went wrong, please try again`.red);
+    console.log(` ¡The number is not valid! `.bgRed);
+    console.log(` Something went wrong, please try again `.red);
     return [characters.concat("┤"), "Invalid", false];
   }
 
-  evaluateRomanNumber(characters) {
-    const computedCharacters = this.getComputedRomanCharacters(characters);
-    if (!this.romanNumberHasValidCharacters(computedCharacters)) {
+  evaluateArithmeticExpression(characters) {
+    const computedCharacters =
+      this.getComputedArithmeticExpressionCharacters(characters);
+    if (!this.arithmeticExpressionHasValidCharacters(computedCharacters)) {
+      console.log(
+        "ERROR: Llegamos hasta aquí: ".bgRed + characters.concat("┤")
+      );
       return [characters.concat("┤"), "Invalid", false];
     }
-    const decimalValue = romanToArab(computedCharacters);
 
-    const romanNumber = computedCharacters.concat("┤");
+    console.log(
+      "EXITO: Llegamos hasta aquí: ".bgGreen + characters.concat("┤")
+    );
 
     let i = 0;
     do {
-      switch (romanNumber[i]) {
+      switch (characters[i]) {
         case "L":
-          switch (this.romanQueue.peek()) {
+          switch (this.arithmeticQueue.peek()) {
             case "L":
               if (this.state === "S1") {
                 this.state = "S1";
@@ -70,8 +76,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S3";
                 this.inputValues.L = "T21";
-                this.romanQueue.pop();
-                this.romanQueue.push("L");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("L");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.L = "ERROR";
@@ -183,7 +189,7 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S3";
                 this.inputValues.L = "T1";
-                this.romanQueue.push("L");
+                this.arithmeticQueue.push("L");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.L = "ERROR";
@@ -201,7 +207,7 @@ class ArithmeticUtils {
           break;
 
         case "X":
-          switch (this.romanQueue.peek()) {
+          switch (this.arithmeticQueue.peek()) {
             case "L":
               if (this.state === "S1") {
                 this.state = "S1";
@@ -214,8 +220,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.X = "T2";
-                this.romanQueue.pop();
-                this.romanQueue.push("X1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("X1");
               }
               break;
 
@@ -223,8 +229,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.X = "T22";
-                this.romanQueue.pop();
-                this.romanQueue.push("X2");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("X2");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.X = "ERROR";
@@ -232,8 +238,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.X = "T3";
-                this.romanQueue.pop();
-                this.romanQueue.push("X2");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("X2");
               }
               break;
 
@@ -241,8 +247,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.X = "T25";
-                this.romanQueue.pop();
-                this.romanQueue.push("X3");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("X3");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.X = "ERROR";
@@ -250,8 +256,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.X = "T4";
-                this.romanQueue.pop();
-                this.romanQueue.push("X3");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("X3");
               }
               break;
 
@@ -291,8 +297,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S2";
                 this.inputValues.X = "T12";
-                this.romanQueue.pop();
-                this.romanQueue.push("X1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("X1");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.X = "ERROR";
@@ -300,8 +306,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S2";
                 this.inputValues.X = "T12";
-                this.romanQueue.pop();
-                this.romanQueue.push("X1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("X1");
               }
               break;
 
@@ -341,7 +347,7 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.X = "T9";
-                this.romanQueue.push("X1");
+                this.arithmeticQueue.push("X1");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.X = "ERROR";
@@ -359,7 +365,7 @@ class ArithmeticUtils {
           break;
 
         case "V":
-          switch (this.romanQueue.peek()) {
+          switch (this.arithmeticQueue.peek()) {
             case "L":
               if (this.state === "S1") {
                 this.state = "S1";
@@ -372,8 +378,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.V = "T5";
-                this.romanQueue.pop();
-                this.romanQueue.push("V");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("V");
               }
               break;
 
@@ -381,8 +387,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.V = "T23";
-                this.romanQueue.pop();
-                this.romanQueue.push("V");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("V");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.V = "ERROR";
@@ -390,8 +396,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.V = "T6";
-                this.romanQueue.pop();
-                this.romanQueue.push("V");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("V");
               }
               break;
 
@@ -399,8 +405,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.V = "T26";
-                this.romanQueue.pop();
-                this.romanQueue.push("V");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("V");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.V = "ERROR";
@@ -408,8 +414,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.V = "T7";
-                this.romanQueue.pop();
-                this.romanQueue.push("V");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("V");
               }
               break;
 
@@ -417,8 +423,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.V = "T28";
-                this.romanQueue.pop();
-                this.romanQueue.push("V");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("V");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.V = "ERROR";
@@ -426,8 +432,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.V = "T8";
-                this.romanQueue.pop();
-                this.romanQueue.push("V");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("V");
               }
               break;
 
@@ -450,8 +456,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S2";
                 this.inputValues.V = "T13";
-                this.romanQueue.pop();
-                this.romanQueue.push("V");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("V");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.V = "ERROR";
@@ -459,8 +465,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S2";
                 this.inputValues.V = "T13";
-                this.romanQueue.pop();
-                this.romanQueue.push("V");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("V");
               }
               break;
 
@@ -498,7 +504,7 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.V = "T10";
-                this.romanQueue.push("V");
+                this.arithmeticQueue.push("V");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.V = "ERROR";
@@ -516,7 +522,7 @@ class ArithmeticUtils {
           break;
 
         case "I":
-          switch (this.romanQueue.peek()) {
+          switch (this.arithmeticQueue.peek()) {
             case "L":
               if (this.state === "S1") {
                 this.state = "S1";
@@ -529,8 +535,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.I = "T16";
-                this.romanQueue.pop();
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I1");
               }
               break;
 
@@ -538,8 +544,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.I = "T24";
-                this.romanQueue.pop();
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I1");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.I = "ERROR";
@@ -547,8 +553,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.I = "T17";
-                this.romanQueue.pop();
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I1");
               }
               break;
 
@@ -556,8 +562,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.I = "T27";
-                this.romanQueue.pop();
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I1");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.I = "ERROR";
@@ -565,8 +571,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.I = "T18";
-                this.romanQueue.pop();
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I1");
               }
               break;
 
@@ -574,8 +580,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.I = "T29";
-                this.romanQueue.pop();
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I1");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.I = "ERROR";
@@ -583,8 +589,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.I = "T19";
-                this.romanQueue.pop();
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I1");
               }
               break;
 
@@ -592,8 +598,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.I = "T30";
-                this.romanQueue.pop();
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I1");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.I = "ERROR";
@@ -601,8 +607,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.I = "T20";
-                this.romanQueue.pop();
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I1");
               }
               break;
 
@@ -610,8 +616,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.I = "T31";
-                this.romanQueue.pop();
-                this.romanQueue.push("I2");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I2");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.I = "ERROR";
@@ -619,8 +625,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.I = "T14";
-                this.romanQueue.pop();
-                this.romanQueue.push("I2");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I2");
               }
               break;
 
@@ -628,8 +634,8 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.I = "T32";
-                this.romanQueue.pop();
-                this.romanQueue.push("I3");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I3");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.I = "ERROR";
@@ -637,8 +643,8 @@ class ArithmeticUtils {
               } else if (this.state === "S3") {
                 this.state = "S3";
                 this.inputValues.I = "T15";
-                this.romanQueue.pop();
-                this.romanQueue.push("I3");
+                this.arithmeticQueue.pop();
+                this.arithmeticQueue.push("I3");
               }
               break;
 
@@ -662,7 +668,7 @@ class ArithmeticUtils {
               if (this.state === "S1") {
                 this.state = "S1";
                 this.inputValues.I = "T11";
-                this.romanQueue.push("I1");
+                this.arithmeticQueue.push("I1");
               } else if (this.state === "S2") {
                 this.state = "S2";
                 this.inputValues.I = "ERROR";
@@ -680,7 +686,7 @@ class ArithmeticUtils {
           break;
 
         case "┤":
-          switch (this.romanQueue.peek()) {
+          switch (this.arithmeticQueue.peek()) {
             case "L":
               if (this.state === "S1") {
                 this.state = "S1";
@@ -801,16 +807,16 @@ class ArithmeticUtils {
     return [romanNumber, decimalValue, true];
   }
 
-  romanNumberHasValidCharacters(characters) {
-    return characters.split("").every((character) => {
-      return (
-        character === "L" ||
-        character === "X" ||
-        character === "V" ||
-        character === "I"
-      );
-    });
+  arithmeticExpressionHasValidCharacters(input) {
+    const characters = input.replaceAll(" ", "");
+    return characters
+      .split("")
+      .every((char) => this.isNumber(char) || this.isOperator(char));
   }
+  isNumber = (char) => new RegExp(process.env.ARITHMETIC_OPERANDS).test(char);
+
+  isOperator = (char) =>
+    new RegExp(process.env.ARITHMETIC_OPERATORS).test(char);
 }
 
 module.exports = ArithmeticUtils;

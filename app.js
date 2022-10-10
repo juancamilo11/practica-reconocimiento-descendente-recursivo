@@ -1,9 +1,11 @@
-require("colors");
+require("dotenv").config();
 const RomanNumbers = require("./models/ArithmeticExpressionList");
 const fs = require("fs");
 const transitionsTable = require("./documentation/transitions-table.json");
+const tableDebajosDe = require("./documentation/debajos-de-table.json");
 const { inquirerMenu, pause, readInput } = require("./helpers/inquirer");
-const validNumbers = require("./documentation/valid-roman-numbers.json");
+const validNumbers = [];
+require("colors");
 
 const main = async () => {
   let opt = "";
@@ -24,9 +26,9 @@ const main = async () => {
 
       case "2":
         arithmeticExpressions.getArithmeticExpression.forEach(
-          (romanNumber, i) => {
+          (arithExpression, i) => {
             const index = `${i + 1}`.green;
-            const { id, roman, decimal, isValid } = romanNumber;
+            const { id, roman, decimal, isValid } = arithExpression;
             console.log(
               `${index}. id: ${id.gray} - ${`${roman}`.bgBlue} - ${
                 isValid ? `${decimal}`.green : `${decimal}`.red
@@ -37,17 +39,17 @@ const main = async () => {
         break;
 
       case "3":
+        console.log(` 1. Table: ${" DebajosDe ".bgGreen} `.green.bold);
+        console.table(tableDebajosDe);
+        console.log(
+          " --------------------------------------------------------------------------------- "
+        );
+
+        console.log(` 2. Table: ${" Transitions ".bgGreen} `.green.bold);
         console.table(transitionsTable);
-        break;
-
-      case "4":
-        validNumbers.forEach(({ roman }, i) => {
-          arithmeticExpressions.addArithmeticExpression(roman);
-        });
-
-        console.table({
-          SUCCESS: "Please check out the the list of roman numbers.",
-        });
+        console.log(
+          " ----------------------------------------------------------------- "
+        );
         break;
 
       default:
@@ -58,7 +60,9 @@ const main = async () => {
   } while (opt !== "0");
 
   fs.writeFileSync(
-    `generated/RomanNumbers-${new Date().toString().replaceAll(":", "-")}.json`,
+    `generated/arithmetic-expressions-${new Date()
+      .toString()
+      .replaceAll(":", "-")}.json`,
     JSON.stringify(arithmeticExpressions)
   );
 };

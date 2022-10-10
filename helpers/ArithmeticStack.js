@@ -1,4 +1,4 @@
-class RomanQueue {
+class ArithmeticExpressionStack {
   elements = [];
 
   constructor() {
@@ -26,4 +26,4 @@ class RomanQueue {
   }
 }
 
-module.exports = RomanQueue;
+module.exports = ArithmeticExpressionStack;

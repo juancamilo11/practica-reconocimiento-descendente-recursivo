@@ -13,7 +13,7 @@ const preguntas = [
       },
       {
         value: "2",
-        name: `${"2.".green} See full list of arithmetic expressions`,
+        name: `${"2.".green} See your full list of arithmetic expressions`,
       },
       {
         value: "3",

@@ -2,30 +2,27 @@ const { v4: uudiv4 } = require("uuid");
 const ArithmeticExpressionUtils = require("../helpers/ArithmeticUtils");
 
 class ArithmeticExpression {
-  id = "";
-  roman = "";
-  decimal = "";
   isValid = false;
 
-  romanUtils = new ArithmeticExpressionUtils();
+  constructor(expression) {
+    this.arithmeticUtils = new ArithmeticExpressionUtils();
 
-  constructor(roman) {
-    this.romanUtils = new ArithmeticExpressionUtils();
     this.id = uudiv4();
-    const [romanNumber, decimal, isValid] =
-      this.romanUtils.evaluateRomanNumber(roman);
+    this.originalExpression = expression;
 
-    this.roman = romanNumber;
-    this.decimal = decimal;
+    const [errorList, isValid] =
+      this.arithmeticUtils.evaluateArithmeticExpression(expression);
+
+    this.errorList = errorList;
     this.isValid = isValid;
   }
 
-  get getRomanValue() {
-    return this.roman;
+  get getOriginalExpression() {
+    return this.originalExpression;
   }
 
-  get getDecimalValue() {
-    return this.decimal;
+  get getErrorList() {
+    return this.errorList;
   }
 
   get isValid() {

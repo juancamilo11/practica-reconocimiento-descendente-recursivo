@@ -12,7 +12,9 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
+    "as-table": "^1.0.55",
     "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
     "inquirer": "^7.3.3",
     "uuid": "^8.3.2"
   }
