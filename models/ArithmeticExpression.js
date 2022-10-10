@@ -10,11 +10,12 @@ class ArithmeticExpression {
     this.id = uudiv4();
     this.originalExpression = expression;
 
-    const [errorList, isValid] =
+    const [originalExp, errorList, result, isValid] =
       this.arithmeticUtils.evaluateArithmeticExpression(expression);
 
     this.errorList = errorList;
     this.isValid = isValid;
+    this.result = result;
   }
 
   get getOriginalExpression() {

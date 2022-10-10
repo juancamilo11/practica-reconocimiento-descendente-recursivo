@@ -25,13 +25,18 @@ const main = async () => {
         break;
 
       case "2":
-        arithmeticExpressions.getArithmeticExpression.forEach(
+        arithmeticExpressions.getArithmeticExpressions.forEach(
           (arithExpression, i) => {
             const index = `${i + 1}`.green;
-            const { id, roman, decimal, isValid } = arithExpression;
+            const { id, originalExpression, errorList, result, isValid } =
+              arithExpression;
             console.log(
-              `${index}. id: ${id.gray} - ${`${roman}`.bgBlue} - ${
-                isValid ? `${decimal}`.green : `${decimal}`.red
+              `${index}. id: ${id.gray} - ${
+                ` ${originalExpression} `.bgBlue
+              } - ${
+                isValid
+                  ? `Result: ${result}`.green
+                  : `Result: Syntax ERROR `.red
               }`
             );
           }

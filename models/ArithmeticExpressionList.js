@@ -1,8 +1,6 @@
 const ArithmeticExpression = require("./ArithmeticExpression");
 
 class ArithmeticExpressionList {
-  arithmeticExpressions = null;
-
   constructor() {
     this.arithmeticExpressions = [];
   }
@@ -12,7 +10,7 @@ class ArithmeticExpressionList {
     this.arithmeticExpressions.push(arithmeticExpression);
   }
 
-  get getArithmeticExpression() {
+  get getArithmeticExpressions() {
     return this.arithmeticExpressions;
   }
 
