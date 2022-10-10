@@ -411,7 +411,23 @@ class ArithmeticUtils {
         case "┤":
           switch (this.arithmeticStack.peek()) {
             case "<E>":
-              // ID0
+              // ID0 --> identification #0
+              if (this.arithmeticStack.usep().match(new RegExp("^▼<E>"))) {
+                return [
+                  characters.concat("┤"),
+                  [],
+                  getArithmeticExpResult(expression),
+                  true,
+                ];
+              } else {
+                return [
+                  characters.concat("┤"),
+                  ["No se ha llegado finalmente a ▼<E>, hilera inválida."],
+                  "Syntax ERROR",
+                  false,
+                ];
+              }
+
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -498,6 +514,16 @@ class ArithmeticUtils {
 
   isOperator = (char) =>
     new RegExp(process.env.ARITHMETIC_OPERATORS).test(char);
+
+  getArithmeticExpResult = (expression) => {
+    return expression.replaceAll(" ", "");
+  };
+
+  operands = (characters) =>
+    characters.split(/[-\\+\\*\\/\\(\\)]/).filter((number) => number);
+
+  operators = (characters) =>
+    characters.split(new RegExp(/[0-9]/)).filter((operator) => operator);
 }
 
 module.exports = ArithmeticUtils;

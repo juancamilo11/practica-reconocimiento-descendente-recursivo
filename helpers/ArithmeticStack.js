@@ -17,6 +17,11 @@ class ArithmeticExpressionStack {
     return this.elements[this.elements.length - 1];
   }
 
+  //  USEP: "Últimos simbolos en pila"
+  usep() {
+    return [...this.elements].reverse().join("");
+  }
+
   isEmpty() {
     return this.elements.length === 0;
   }
