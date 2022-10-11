@@ -1,5 +1,6 @@
 const ArithmeticExpStack = require("./ArithmeticStack");
 require("colors");
+const stringMath = require("string-math");
 
 class ArithmeticUtils {
   constructor() {
@@ -18,34 +19,11 @@ class ArithmeticUtils {
       .join("I");
   }
 
-  getBadInputCharacter() {
-    for (const inputValue in this.inputValues) {
-      if (this.inputValues[inputValue] === "ERROR") {
-        return inputValue;
-      }
-    }
-  }
-
-  showBadNumberMessage(index, characters) {
-    console.log(`\n ¡The arithmetic expression is not valid! `.bgRed);
-    console.log(
-      ` character ${this.getBadInputCharacter()} in position ${
-        index + 1
-      } has provoked the error `.red
-    );
-    return [characters.concat("┤"), "Invalid", false];
-  }
-
-  showInconsistentNumberMessage(characters) {
-    console.log(` ¡The number is not valid! `.bgRed);
-    console.log(` Something went wrong, please try again `.red);
-    return [characters.concat("┤"), "Invalid", false];
-  }
-
   evaluateArithmeticExpression(characters) {
     const computedCharacters =
       this.getComputedArithmeticExpressionCharacters(characters).concat("┤");
     if (!this.arithmeticExpressionHasValidCharacters(characters)) {
+      console.log(" ERROR: The arithmetic expression is not valid!. ".bgRed);
       return [
         characters.concat("┤"),
         ["Invalid characters"],
@@ -91,8 +69,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -100,8 +78,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -109,8 +87,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -128,8 +106,8 @@ class ArithmeticUtils {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
-                  "Arithmetic ERROR",
+                  ["Invalid characters"],
+                  "Syntax ERROR",
                   false,
                 ];
               }
@@ -140,8 +118,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -156,8 +134,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -182,8 +160,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -191,8 +169,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -200,8 +178,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -219,8 +197,8 @@ class ArithmeticUtils {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
-                  "Arithmetic ERROR",
+                  ["Invalid characters"],
+                  "Syntax ERROR",
                   false,
                 ];
               }
@@ -231,8 +209,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -247,8 +225,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -256,8 +234,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -265,8 +243,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -295,8 +273,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -304,8 +282,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -327,8 +305,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -336,8 +314,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -345,8 +323,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -375,8 +353,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -384,8 +362,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -434,8 +412,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -443,8 +421,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -452,8 +430,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -471,8 +449,8 @@ class ArithmeticUtils {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
-                  "Arithmetic ERROR",
+                  ["Invalid characters"],
+                  "Syntax ERROR",
                   false,
                 ];
               }
@@ -483,8 +461,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -502,15 +480,15 @@ class ArithmeticUtils {
                 return [
                   characters.concat("┤"),
                   [],
-                  this.getArithmeticExpResult(characters, 1),
+                  this.getArithmeticExpResult(characters),
                   true,
                 ];
               } else {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
-                  "Arithmetic ERROR",
+                  ["Invalid characters"],
+                  "Syntax ERROR",
                   false,
                 ];
               }
@@ -539,8 +517,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -548,8 +526,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -557,8 +535,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -576,8 +554,8 @@ class ArithmeticUtils {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
-                  "Arithmetic ERROR",
+                  ["Invalid characters"],
+                  "Syntax ERROR",
                   false,
                 ];
               }
@@ -588,8 +566,8 @@ class ArithmeticUtils {
               // ERROR
               return [
                 characters.concat("┤"),
-                [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
-                "Arithmetic ERROR",
+                ["Invalid characters"],
+                "Syntax ERROR",
                 false,
               ];
 
@@ -605,7 +583,7 @@ class ArithmeticUtils {
     return [
       characters.concat("┤"),
       [],
-      this.getArithmeticExpResult(characters, -1),
+      this.getArithmeticExpResult(characters),
       true,
     ];
   }
@@ -684,9 +662,8 @@ class ArithmeticUtils {
     this.arithmeticStack.push("<P>");
   }
 
-  getArithmeticExpResult = (_expression, res) => {
-    //return expression.replaceAll(" ", "");
-    return Number(res);
+  getArithmeticExpResult = (expression) => {
+    return stringMath(expression);
   };
 
   operands = (characters) =>

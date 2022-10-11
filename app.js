@@ -4,7 +4,6 @@ const fs = require("fs");
 const transitionsTable = require("./documentation/transitions-table.json");
 const tableDebajosDe = require("./documentation/debajos-de-table.json");
 const { inquirerMenu, pause, readInput } = require("./helpers/inquirer");
-const validNumbers = [];
 require("colors");
 
 const main = async () => {
@@ -19,7 +18,7 @@ const main = async () => {
     switch (opt) {
       case "1":
         const input = await readInput(
-          "Arithmetic expression (0 ~ 9, +, -, *, /, () are allowed): "
+          "Arithmetic expression (0 ~ 9, +, -, *, /, () are allowed):  EJ: 32+4-50, (13+4-10), 30-3*500"
         );
         arithmeticExpressions.addArithmeticExpression(input);
         break;
@@ -58,6 +57,11 @@ const main = async () => {
         );
         break;
 
+      case "4":
+        console.log(" Autor: Juan Camilo Cardona Calderón ".bgGreen);
+        console.log(" ---- Universidad de Antioquia ----  ".bgGreen);
+        console.log(" " + " Curso: Teoría de Lenguajes & Lab. ".green);
+
       default:
         break;
     }
@@ -69,7 +73,16 @@ const main = async () => {
     `generated/arithmetic-expressions-${new Date()
       .toString()
       .replaceAll(":", "-")}.json`,
-    JSON.stringify(arithmeticExpressions)
+    JSON.stringify(
+      arithmeticExpressions.arithmeticExpressions.map(
+        ({ originalExpression, isValid, errorList, result }) => ({
+          originalExpression,
+          isValid,
+          errorList,
+          result,
+        })
+      )
+    )
   );
 };
 

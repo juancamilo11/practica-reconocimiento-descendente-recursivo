@@ -20,6 +20,10 @@ const preguntas = [
         name: `${"3.".green} See the resources used for the solution`,
       },
       {
+        value: "4",
+        name: `${"4.".green} See the author of the solution`,
+      },
+      {
         value: "0",
         name: `${
           "0.".green
