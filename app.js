@@ -18,7 +18,8 @@ const main = async () => {
     switch (opt) {
       case "1":
         const input = await readInput(
-          "Arithmetic expression (0 ~ 9, +, -, *, /, () are allowed):  EJ: 32+4-50, (13+4-10), 30-3*500"
+          `Arithmetic expression (0 ~ 9, +, -, *, /, () are allowed):  [EJ: 32+4-50, (13+4-10), 30-3*500]
+          Your expression: `
         );
         arithmeticExpressions.addArithmeticExpression(input);
         break;
