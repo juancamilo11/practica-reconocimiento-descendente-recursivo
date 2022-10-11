@@ -34,9 +34,7 @@ const main = async () => {
               `${index}. id: ${id.gray} - ${
                 ` ${originalExpression} `.bgBlue
               } - ${
-                isValid
-                  ? `Result: ${result}`.green
-                  : `Result: Syntax ERROR `.red
+                isValid ? `Result: ${result}`.green : `Result: Syntax ERRO `.red
               }`
             );
           }

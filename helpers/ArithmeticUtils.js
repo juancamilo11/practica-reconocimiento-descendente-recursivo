@@ -14,7 +14,7 @@ class ArithmeticUtils {
       .replaceAll(" ", "")
       .replaceAll("-", "+")
       .replaceAll("/", "*")
-      .split(/[0-9]/)
+      .split(/[0-9]*/)
       .join("I");
   }
 
@@ -43,6 +43,9 @@ class ArithmeticUtils {
   }
 
   evaluateArithmeticExpression(characters) {
+    console.table({
+      hola: this.arithmeticExpressionHasValidCharacters(characters),
+    });
     const computedCharacters =
       this.getComputedArithmeticExpressionCharacters(characters).concat("┤");
     if (!this.arithmeticExpressionHasValidCharacters(characters)) {
@@ -62,8 +65,6 @@ class ArithmeticUtils {
             case "<E>":
               // SHIFT
               this.arithmeticStack.push("+");
-              // this.inputValues["+"] = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -74,9 +75,6 @@ class ArithmeticUtils {
               } else {
                 this.reduce2();
               }
-              // this.inputValues.L = "T21";
-              // this.arithmeticStack.pop();
-              // this.arithmeticStack.push("L");
 
               break;
 
@@ -87,8 +85,6 @@ class ArithmeticUtils {
               } else {
                 this.reduce4();
               }
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -102,11 +98,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              //this.inputValues.L = "ERROR";
-
-              //return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "*":
               // EEERROR: Se tiene un * seguido de un +
@@ -118,10 +109,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "(":
               // EEERROR: No se muy bien
@@ -133,16 +120,10 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "I":
               // ID6
               this.reduce6();
-              //this.inputValues.L = "ERROR";
-              //return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -161,8 +142,6 @@ class ArithmeticUtils {
                   false,
                 ];
               }
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -176,10 +155,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              //this.inputValues.L = "T1";
-              //this.arithmeticStack.push("L");
-
-              break;
 
             default:
               break;
@@ -198,17 +173,10 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "<T>":
               // SHIFT
               this.arithmeticStack.push("*");
-              // this.inputValues.L = "T21";
-              // this.arithmeticStack.pop();
-              // this.arithmeticStack.push("L");
 
               break;
 
@@ -219,8 +187,6 @@ class ArithmeticUtils {
               } else {
                 this.reduce4();
               }
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -234,10 +200,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "*":
               // EEERROR: No se muy bien
@@ -249,10 +211,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "(":
               // EEERROR: No se muy bien
@@ -264,16 +222,10 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "I":
               // ID6
               this.reduce6();
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -292,8 +244,6 @@ class ArithmeticUtils {
                   false,
                 ];
               }
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -307,10 +257,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "T1";
-              // this.arithmeticStack.push("L");
-
-              break;
 
             default:
               break;
@@ -329,10 +275,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "<T>":
               // EEERROR: No se muy bien
@@ -344,11 +286,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "T21";
-              // this.arithmeticStack.pop();
-              // this.arithmeticStack.push("L");
-
-              break;
 
             case "<P>":
               // EEERROR: No se muy bien
@@ -360,33 +297,22 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "+":
               // SHIFT
               this.arithmeticStack.push("(");
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
             case "*":
               // SHIFT
               this.arithmeticStack.push("(");
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
             case "(":
               // SHIFT
               this.arithmeticStack.push("(");
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
               break;
 
             case "I":
@@ -399,10 +325,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case ")":
               // EEERROR: No se muy bien
@@ -414,16 +336,10 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "▼":
               // SHIFT
               this.arithmeticStack.push("(");
-              // this.inputValues.L = "T1";
-              // this.arithmeticStack.push("L");
 
               break;
 
@@ -444,10 +360,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "<T>":
               // EEERROR: No se muy bien
@@ -459,11 +371,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "T21";
-              // this.arithmeticStack.pop();
-              // this.arithmeticStack.push("L");
-
-              break;
 
             case "<P>":
               // EEERROR: No se muy bien
@@ -475,32 +382,22 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "+":
               // SHIFT
               this.arithmeticStack.push("I");
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
             case "*":
               // SHIFT
               this.arithmeticStack.push("I");
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
             case "(":
               // SHIFT
               this.arithmeticStack.push("I");
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -514,10 +411,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case ")":
               // EEERROR: No se muy bien
@@ -529,16 +422,10 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "▼":
               // SHIFT
               this.arithmeticStack.push("I");
-              // this.inputValues.L = "T1";
-              // this.arithmeticStack.push("L");
 
               break;
 
@@ -552,8 +439,6 @@ class ArithmeticUtils {
             case "<E>":
               // SHIFT
               this.arithmeticStack.push(")");
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -564,9 +449,6 @@ class ArithmeticUtils {
               } else {
                 this.reduce2();
               }
-              // this.inputValues.L = "T21";
-              // this.arithmeticStack.pop();
-              // this.arithmeticStack.push("L");
 
               break;
 
@@ -577,8 +459,6 @@ class ArithmeticUtils {
               } else {
                 this.reduce4();
               }
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -592,10 +472,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "*":
               // EEERROR: No se muy bien
@@ -607,10 +483,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "(":
               // EEERROR: No se muy bien
@@ -622,16 +494,10 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "I":
               // ID6
               this.reduce6();
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -650,8 +516,6 @@ class ArithmeticUtils {
                   false,
                 ];
               }
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -665,10 +529,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "T1";
-              // this.arithmeticStack.push("L");
-
-              break;
 
             default:
               break;
@@ -697,11 +557,6 @@ class ArithmeticUtils {
                 ];
               }
 
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
-
             case "<T>":
               // ID1
               if (this.arithmeticStack.usep().match(new RegExp("<E>+<T>$"))) {
@@ -709,9 +564,6 @@ class ArithmeticUtils {
               } else {
                 this.reduce2();
               }
-              // this.inputValues.L = "T21";
-              // this.arithmeticStack.pop();
-              // this.arithmeticStack.push("L");
 
               break;
 
@@ -722,8 +574,6 @@ class ArithmeticUtils {
               } else {
                 this.reduce4();
               }
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -737,10 +587,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "*":
               // EEERROR: No se muy bien
@@ -752,10 +598,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "(":
               // EEERROR: No se muy bien
@@ -767,16 +609,10 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
-
-              break;
 
             case "I":
               // ID6
               this.reduce6();
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -795,8 +631,6 @@ class ArithmeticUtils {
                   false,
                 ];
               }
-              // this.inputValues.L = "ERROR";
-              // return this.showBadNumberMessage(i, characters);
 
               break;
 
@@ -810,10 +644,6 @@ class ArithmeticUtils {
                 "Arithmetic ERROR",
                 false,
               ];
-              // this.inputValues.L = "T1";
-              // this.arithmeticStack.push("L");
-
-              break;
 
             default:
               break;
@@ -840,6 +670,10 @@ class ArithmeticUtils {
       .split("")
       .every((char) => this.isNumber(char) || this.isOperator(char));
   }
+
+  isNumber = (char) => new RegExp(/[0-9]/).test(char);
+
+  isOperator = (char) => new RegExp(/[-\\+\\*\\/\\(\\)]/).test(char);
 
   reduce1() {
     console.log("reduce1");
@@ -883,12 +717,7 @@ class ArithmeticUtils {
     this.arithmeticStack.push("<P>");
   }
 
-  isNumber = (char) => new RegExp(process.env.ARITHMETIC_OPERANDS).test(char);
-
-  isOperator = (char) =>
-    new RegExp(process.env.ARITHMETIC_OPERATORS).test(char);
-
-  getArithmeticExpResult = (expression, res) => {
+  getArithmeticExpResult = (_expression, res) => {
     //return expression.replaceAll(" ", "");
     return Number(res);
   };
