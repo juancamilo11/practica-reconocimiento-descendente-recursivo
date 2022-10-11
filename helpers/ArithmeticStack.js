@@ -19,7 +19,7 @@ class ArithmeticExpressionStack {
 
   //  USEP: "Últimos simbolos en pila"
   usep() {
-    return [...this.elements].reverse().join("");
+    return [...this.elements].join("");
   }
 
   isEmpty() {

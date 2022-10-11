@@ -60,7 +60,7 @@ const readInput = async (message) => {
       name: "desc",
       message,
       validate(value) {
-        if (value.length === 0) {
+        if (value.replaceAll(" ", "").length === 0) {
           return "Value is empty, please enter a value";
         }
         return true;

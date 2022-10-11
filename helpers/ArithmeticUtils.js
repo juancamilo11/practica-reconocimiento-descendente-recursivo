@@ -51,11 +51,17 @@ class ArithmeticUtils {
 
     let i = 0;
     do {
+      console.table({
+        computedCharacter: computedCharacters[i],
+        computedCharacters,
+        a: this.arithmeticStack.usep(),
+      });
       switch (computedCharacters[i]) {
         case "+":
           switch (this.arithmeticStack.peek()) {
             case "<E>":
               // SHIFT
+              this.arithmeticStack.push("+");
               // this.inputValues["+"] = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -63,6 +69,11 @@ class ArithmeticUtils {
 
             case "<T>":
               // ID1
+              if (this.arithmeticStack.usep().match(new RegExp("<E>+<T>$"))) {
+                this.reduce1();
+              } else {
+                this.reduce2();
+              }
               // this.inputValues.L = "T21";
               // this.arithmeticStack.pop();
               // this.arithmeticStack.push("L");
@@ -71,6 +82,11 @@ class ArithmeticUtils {
 
             case "<P>":
               // ID3
+              if (this.arithmeticStack.usep().match(new RegExp("<T>*<P>$"))) {
+                this.reduce3();
+              } else {
+                this.reduce4();
+              }
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -78,6 +94,14 @@ class ArithmeticUtils {
 
             case "+":
               // EEERROR: Se tienen dos + consecutivos
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               //this.inputValues.L = "ERROR";
 
               //return this.showBadNumberMessage(i, characters);
@@ -86,6 +110,14 @@ class ArithmeticUtils {
 
             case "*":
               // EEERROR: Se tiene un * seguido de un +
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -93,6 +125,14 @@ class ArithmeticUtils {
 
             case "(":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -100,13 +140,27 @@ class ArithmeticUtils {
 
             case "I":
               // ID6
+              this.reduce6();
               //this.inputValues.L = "ERROR";
               //return this.showBadNumberMessage(i, characters);
 
               break;
 
             case ")":
-              //ID5
+              // ID5
+              if (this.arithmeticStack.usep().match(new RegExp("(<E>)$"))) {
+                this.reduce5();
+              } else {
+                // RECHACE
+                return [
+                  characters.concat("┤"),
+                  [
+                    "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                  ], // TODO
+                  "Arithmetic ERROR",
+                  false,
+                ];
+              }
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -114,6 +168,14 @@ class ArithmeticUtils {
 
             case "▼":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               //this.inputValues.L = "T1";
               //this.arithmeticStack.push("L");
 
@@ -128,6 +190,14 @@ class ArithmeticUtils {
           switch (this.arithmeticStack.peek()) {
             case "<E>":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -135,6 +205,7 @@ class ArithmeticUtils {
 
             case "<T>":
               // SHIFT
+              this.arithmeticStack.push("*");
               // this.inputValues.L = "T21";
               // this.arithmeticStack.pop();
               // this.arithmeticStack.push("L");
@@ -143,6 +214,11 @@ class ArithmeticUtils {
 
             case "<P>":
               // ID3
+              if (this.arithmeticStack.usep().match(new RegExp("<T>*<P>$"))) {
+                this.reduce3();
+              } else {
+                this.reduce4();
+              }
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -150,6 +226,14 @@ class ArithmeticUtils {
 
             case "+":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -157,6 +241,14 @@ class ArithmeticUtils {
 
             case "*":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -164,6 +256,14 @@ class ArithmeticUtils {
 
             case "(":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -171,6 +271,7 @@ class ArithmeticUtils {
 
             case "I":
               // ID6
+              this.reduce6();
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -178,6 +279,19 @@ class ArithmeticUtils {
 
             case ")":
               // ID5
+              if (this.arithmeticStack.usep().match(new RegExp("(<E>)$"))) {
+                this.reduce5();
+              } else {
+                // RECHACE
+                return [
+                  characters.concat("┤"),
+                  [
+                    "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                  ], // TODO
+                  "Arithmetic ERROR",
+                  false,
+                ];
+              }
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -185,6 +299,14 @@ class ArithmeticUtils {
 
             case "▼":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "T1";
               // this.arithmeticStack.push("L");
 
@@ -199,6 +321,14 @@ class ArithmeticUtils {
           switch (this.arithmeticStack.peek()) {
             case "<E>":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -206,6 +336,14 @@ class ArithmeticUtils {
 
             case "<T>":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "T21";
               // this.arithmeticStack.pop();
               // this.arithmeticStack.push("L");
@@ -214,6 +352,14 @@ class ArithmeticUtils {
 
             case "<P>":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -221,6 +367,7 @@ class ArithmeticUtils {
 
             case "+":
               // SHIFT
+              this.arithmeticStack.push("(");
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -228,6 +375,7 @@ class ArithmeticUtils {
 
             case "*":
               // SHIFT
+              this.arithmeticStack.push("(");
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -235,6 +383,7 @@ class ArithmeticUtils {
 
             case "(":
               // SHIFT
+              this.arithmeticStack.push("(");
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -242,6 +391,14 @@ class ArithmeticUtils {
 
             case "I":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -249,6 +406,14 @@ class ArithmeticUtils {
 
             case ")":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -256,6 +421,7 @@ class ArithmeticUtils {
 
             case "▼":
               // SHIFT
+              this.arithmeticStack.push("(");
               // this.inputValues.L = "T1";
               // this.arithmeticStack.push("L");
 
@@ -270,6 +436,14 @@ class ArithmeticUtils {
           switch (this.arithmeticStack.peek()) {
             case "<E>":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -277,6 +451,14 @@ class ArithmeticUtils {
 
             case "<T>":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "T21";
               // this.arithmeticStack.pop();
               // this.arithmeticStack.push("L");
@@ -285,6 +467,14 @@ class ArithmeticUtils {
 
             case "<P>":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -292,6 +482,7 @@ class ArithmeticUtils {
 
             case "+":
               // SHIFT
+              this.arithmeticStack.push("I");
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -299,6 +490,7 @@ class ArithmeticUtils {
 
             case "*":
               // SHIFT
+              this.arithmeticStack.push("I");
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -306,6 +498,7 @@ class ArithmeticUtils {
 
             case "(":
               // SHIFT
+              this.arithmeticStack.push("I");
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -313,6 +506,14 @@ class ArithmeticUtils {
 
             case "I":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -320,6 +521,14 @@ class ArithmeticUtils {
 
             case ")":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -327,6 +536,7 @@ class ArithmeticUtils {
 
             case "▼":
               // SHIFT
+              this.arithmeticStack.push("I");
               // this.inputValues.L = "T1";
               // this.arithmeticStack.push("L");
 
@@ -341,6 +551,7 @@ class ArithmeticUtils {
           switch (this.arithmeticStack.peek()) {
             case "<E>":
               // SHIFT
+              this.arithmeticStack.push(")");
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -348,6 +559,11 @@ class ArithmeticUtils {
 
             case "<T>":
               // ID1
+              if (this.arithmeticStack.usep().match(new RegExp("<E>+<T>$"))) {
+                this.reduce1();
+              } else {
+                this.reduce2();
+              }
               // this.inputValues.L = "T21";
               // this.arithmeticStack.pop();
               // this.arithmeticStack.push("L");
@@ -356,6 +572,11 @@ class ArithmeticUtils {
 
             case "<P>":
               // ID3
+              if (this.arithmeticStack.usep().match(new RegExp("<T>*<P>$"))) {
+                this.reduce3();
+              } else {
+                this.reduce4();
+              }
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -363,6 +584,14 @@ class ArithmeticUtils {
 
             case "+":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -370,6 +599,14 @@ class ArithmeticUtils {
 
             case "*":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -377,6 +614,14 @@ class ArithmeticUtils {
 
             case "(":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -384,6 +629,7 @@ class ArithmeticUtils {
 
             case "I":
               // ID6
+              this.reduce6();
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -391,6 +637,19 @@ class ArithmeticUtils {
 
             case ")":
               // ID5
+              if (this.arithmeticStack.usep().match(new RegExp("(<E>)$"))) {
+                this.reduce5();
+              } else {
+                // RECHACE
+                return [
+                  characters.concat("┤"),
+                  [
+                    "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                  ], // TODO
+                  "Arithmetic ERROR",
+                  false,
+                ];
+              }
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -398,6 +657,14 @@ class ArithmeticUtils {
 
             case "▼":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "T1";
               // this.arithmeticStack.push("L");
 
@@ -412,18 +679,20 @@ class ArithmeticUtils {
           switch (this.arithmeticStack.peek()) {
             case "<E>":
               // ID0 --> identification #0
-              if (this.arithmeticStack.usep().match(new RegExp("^▼<E>"))) {
+              if (this.arithmeticStack.usep().match(new RegExp("▼<E>$"))) {
+                // ACEPTE
                 return [
                   characters.concat("┤"),
                   [],
-                  getArithmeticExpResult(expression),
+                  this.getArithmeticExpResult(characters, 1),
                   true,
                 ];
               } else {
+                // RECHACE
                 return [
                   characters.concat("┤"),
-                  ["No se ha llegado finalmente a ▼<E>, hilera inválida."],
-                  "Syntax ERROR",
+                  ["No se ha llegado finalmente a ▼<E>, hilera inválida."], // TODO
+                  "Arithmetic ERROR",
                   false,
                 ];
               }
@@ -435,6 +704,11 @@ class ArithmeticUtils {
 
             case "<T>":
               // ID1
+              if (this.arithmeticStack.usep().match(new RegExp("<E>+<T>$"))) {
+                this.reduce1();
+              } else {
+                this.reduce2();
+              }
               // this.inputValues.L = "T21";
               // this.arithmeticStack.pop();
               // this.arithmeticStack.push("L");
@@ -443,6 +717,11 @@ class ArithmeticUtils {
 
             case "<P>":
               // ID3
+              if (this.arithmeticStack.usep().match(new RegExp("<T>*<P>$"))) {
+                this.reduce3();
+              } else {
+                this.reduce4();
+              }
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -450,6 +729,14 @@ class ArithmeticUtils {
 
             case "+":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -457,6 +744,14 @@ class ArithmeticUtils {
 
             case "*":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -464,6 +759,14 @@ class ArithmeticUtils {
 
             case "(":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -471,6 +774,7 @@ class ArithmeticUtils {
 
             case "I":
               // ID6
+              this.reduce6();
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -478,6 +782,19 @@ class ArithmeticUtils {
 
             case ")":
               // ID5
+              if (this.arithmeticStack.usep().match(new RegExp("(<E>)$"))) {
+                this.reduce5();
+              } else {
+                // RECHACE
+                return [
+                  characters.concat("┤"),
+                  [
+                    "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                  ], // TODO
+                  "Arithmetic ERROR",
+                  false,
+                ];
+              }
               // this.inputValues.L = "ERROR";
               // return this.showBadNumberMessage(i, characters);
 
@@ -485,6 +802,14 @@ class ArithmeticUtils {
 
             case "▼":
               // EEERROR: No se muy bien
+              return [
+                characters.concat("┤"),
+                [
+                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
+                ], // TODO
+                "Arithmetic ERROR",
+                false,
+              ];
               // this.inputValues.L = "T1";
               // this.arithmeticStack.push("L");
 
@@ -501,7 +826,12 @@ class ArithmeticUtils {
       i = i + 1;
     } while (computedCharacters[i] !== "┤");
     // return [romanNumber, decimalValue, true];
-    return [characters.concat("┤"), [], "RESULT", true];
+    return [
+      characters.concat("┤"),
+      [],
+      this.getArithmeticExpResult(characters, -1),
+      true,
+    ];
   }
 
   arithmeticExpressionHasValidCharacters(input) {
@@ -510,13 +840,57 @@ class ArithmeticUtils {
       .split("")
       .every((char) => this.isNumber(char) || this.isOperator(char));
   }
+
+  reduce1() {
+    console.log("reduce1");
+    this.arithmeticStack.pop();
+    this.arithmeticStack.pop();
+    this.arithmeticStack.pop();
+    this.arithmeticStack.push("<E>");
+  }
+
+  reduce2() {
+    console.log("reduce2");
+    this.arithmeticStack.pop();
+    this.arithmeticStack.push("<E>");
+  }
+
+  reduce3() {
+    console.log("reduce3");
+    this.arithmeticStack.pop();
+    this.arithmeticStack.pop();
+    this.arithmeticStack.pop();
+    this.arithmeticStack.push("<T>");
+  }
+
+  reduce4() {
+    console.log("reduce4");
+    this.arithmeticStack.pop();
+    this.arithmeticStack.push("<T>");
+  }
+
+  reduce5() {
+    console.log("reduce5");
+    this.arithmeticStack.pop();
+    this.arithmeticStack.pop();
+    this.arithmeticStack.pop();
+    this.arithmeticStack.push("<P>");
+  }
+
+  reduce6() {
+    console.log("reduce6");
+    this.arithmeticStack.pop();
+    this.arithmeticStack.push("<P>");
+  }
+
   isNumber = (char) => new RegExp(process.env.ARITHMETIC_OPERANDS).test(char);
 
   isOperator = (char) =>
     new RegExp(process.env.ARITHMETIC_OPERATORS).test(char);
 
-  getArithmeticExpResult = (expression) => {
-    return expression.replaceAll(" ", "");
+  getArithmeticExpResult = (expression, res) => {
+    //return expression.replaceAll(" ", "");
+    return Number(res);
   };
 
   operands = (characters) =>
