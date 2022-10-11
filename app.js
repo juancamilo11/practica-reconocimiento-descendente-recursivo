@@ -31,10 +31,12 @@ const main = async () => {
             const { id, originalExpression, errorList, result, isValid } =
               arithExpression;
             console.log(
-              `${index}. id: ${id.gray} - ${
-                ` ${originalExpression} `.bgBlue
+              `${index}. ${` ${originalExpression} `.bgBlue} - ${
+                isValid
+                  ? " This expression is correct ".bgGreen
+                  : " This expression is not correct ".bgRed
               } - ${
-                isValid ? `Result: ${result}`.green : `Result: Syntax ERRO `.red
+                isValid ? `Result: ${result}`.green : `Result: ${result}`.red
               }`
             );
           }

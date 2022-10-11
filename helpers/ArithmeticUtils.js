@@ -55,16 +55,12 @@ class ArithmeticUtils {
 
     let i = 0;
     do {
-      // console.table({
-      //   computedCharacter: computedCharacters[i],
-      //   computedCharacters,
-      //   a: this.arithmeticStack.usep(),
-      // });
       switch (computedCharacters[i]) {
         case "+":
           switch (this.arithmeticStack.peek()) {
             case "<E>":
               // SHIFT
+              console.log(` SHIFT: APILE '+', AVANCE `.bgGreen);
               this.arithmeticStack.push("+");
               i++;
 
@@ -91,34 +87,28 @@ class ArithmeticUtils {
               break;
 
             case "+":
-              // EEERROR: Se tienen dos + consecutivos
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "*":
-              // EEERROR: Se tiene un * seguido de un +
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "(":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
@@ -137,9 +127,7 @@ class ArithmeticUtils {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  [
-                    "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                  ], // TODO
+                  [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
                   "Arithmetic ERROR",
                   false,
                 ];
@@ -148,12 +136,10 @@ class ArithmeticUtils {
               break;
 
             case "▼":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '+' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
@@ -166,18 +152,17 @@ class ArithmeticUtils {
         case "*":
           switch (this.arithmeticStack.peek()) {
             case "<E>":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "<T>":
               // SHIFT
+              console.log(` SHIFT: APILE '*', AVANCE `.bgGreen);
               this.arithmeticStack.push("*");
               i++;
               break;
@@ -193,34 +178,28 @@ class ArithmeticUtils {
               break;
 
             case "+":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "*":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "(":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
@@ -239,9 +218,7 @@ class ArithmeticUtils {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  [
-                    "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                  ], // TODO
+                  [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
                   "Arithmetic ERROR",
                   false,
                 ];
@@ -250,12 +227,10 @@ class ArithmeticUtils {
               break;
 
             case "▼":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '*' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
@@ -268,80 +243,74 @@ class ArithmeticUtils {
         case "(":
           switch (this.arithmeticStack.peek()) {
             case "<E>":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "<T>":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "<P>":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "+":
               // SHIFT
+              console.log(` SHIFT: APILE '(', AVANCE `.bgGreen);
               this.arithmeticStack.push("(");
               i++;
               break;
 
             case "*":
               // SHIFT
+              console.log(` SHIFT: APILE '(', AVANCE `.bgGreen);
               this.arithmeticStack.push("(");
               i++;
               break;
 
             case "(":
               // SHIFT
+              console.log(` SHIFT: APILE '(', AVANCE `.bgGreen);
               this.arithmeticStack.push("(");
               i++;
               break;
 
             case "I":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case ")":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '(' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "▼":
               // SHIFT
+              console.log(` SHIFT: APILE '(', AVANCE `.bgGreen);
               this.arithmeticStack.push("(");
               i++;
               break;
@@ -354,80 +323,74 @@ class ArithmeticUtils {
         case "I":
           switch (this.arithmeticStack.peek()) {
             case "<E>":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "<T>":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "<P>":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "+":
               // SHIFT
+              console.log(` SHIFT: APILE 'I', AVANCE `.bgGreen);
               this.arithmeticStack.push("I");
               i++;
               break;
 
             case "*":
               // SHIFT
+              console.log(` SHIFT: APILE 'I', AVANCE `.bgGreen);
               this.arithmeticStack.push("I");
               i++;
               break;
 
             case "(":
               // SHIFT
+              console.log(` SHIFT: APILE 'I', AVANCE `.bgGreen);
               this.arithmeticStack.push("I");
               i++;
               break;
 
             case "I":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case ")":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid 'I' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "▼":
               // SHIFT
+              console.log(` SHIFT: APILE 'I', AVANCE `.bgGreen);
               this.arithmeticStack.push("I");
               i++;
               break;
@@ -441,6 +404,7 @@ class ArithmeticUtils {
           switch (this.arithmeticStack.peek()) {
             case "<E>":
               // SHIFT
+              console.log(` SHIFT: APILE ')', AVANCE `.bgGreen);
               this.arithmeticStack.push(")");
               i++;
               break;
@@ -466,34 +430,28 @@ class ArithmeticUtils {
               break;
 
             case "+":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "*":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "(":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
@@ -512,9 +470,7 @@ class ArithmeticUtils {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  [
-                    "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                  ], // TODO
+                  [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
                   "Arithmetic ERROR",
                   false,
                 ];
@@ -523,12 +479,10 @@ class ArithmeticUtils {
               break;
 
             case "▼":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid ')' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
@@ -554,7 +508,7 @@ class ArithmeticUtils {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  ["No se ha llegado finalmente a ▼<E>, hilera inválida."], // TODO
+                  [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
                   "Arithmetic ERROR",
                   false,
                 ];
@@ -581,34 +535,28 @@ class ArithmeticUtils {
               break;
 
             case "+":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "*":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
 
             case "(":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
@@ -627,9 +575,7 @@ class ArithmeticUtils {
                 // RECHACE
                 return [
                   characters.concat("┤"),
-                  [
-                    "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                  ], // TODO
+                  [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
                   "Arithmetic ERROR",
                   false,
                 ];
@@ -638,12 +584,10 @@ class ArithmeticUtils {
               break;
 
             case "▼":
-              // EEERROR: No se muy bien
+              // ERROR
               return [
                 characters.concat("┤"),
-                [
-                  "No se ha llegado finalmente a ▼<E>, hilera inválida [(<E>)].",
-                ], // TODO
+                [`Error at position ${i + 1}, invalid '┤' sign.`.bgRed],
                 "Arithmetic ERROR",
                 false,
               ];
@@ -683,9 +627,16 @@ class ArithmeticUtils {
       .replaceAll("-", "+")
       .replaceAll("/", "*");
 
-    console.table({ AQUI: value });
-
-    return value.match("\\+\\+") || value.match("\\*\\*");
+    return (
+      value.match("\\+\\+") ||
+      value.match("\\*\\*") ||
+      value.match("\\+\\*") ||
+      value.match("\\*\\*") ||
+      value.match("^\\+") ||
+      value.match("^\\*") ||
+      value.match("\\+$") ||
+      value.match("\\*$")
+    );
   };
 
   isNumber = (char) => new RegExp(/[0-9]/).test(char);
@@ -693,7 +644,7 @@ class ArithmeticUtils {
   isOperator = (char) => new RegExp(/[-\\+\\*\\/\\(\\)]/).test(char);
 
   reduce1() {
-    console.log("reduce1");
+    console.log(" REDUCE #1: DESAPILE (3), APILE '<E>', RETENGA ".bgGreen);
     this.arithmeticStack.pop();
     this.arithmeticStack.pop();
     this.arithmeticStack.pop();
@@ -701,13 +652,13 @@ class ArithmeticUtils {
   }
 
   reduce2() {
-    console.log("reduce2");
+    console.log(" REDUCE #2: DESAPILE (1), APILE '<E>', RETENGA ".bgGreen);
     this.arithmeticStack.pop();
     this.arithmeticStack.push("<E>");
   }
 
   reduce3() {
-    console.log("reduce3");
+    console.log(" REDUCE #3: DESAPILE (3), APILE '<T>', RETENGA ".bgGreen);
     this.arithmeticStack.pop();
     this.arithmeticStack.pop();
     this.arithmeticStack.pop();
@@ -715,13 +666,13 @@ class ArithmeticUtils {
   }
 
   reduce4() {
-    console.log("reduce4");
+    console.log(" REDUCE #4: DESAPILE (1), APILE '<T>', RETENGA ".bgGreen);
     this.arithmeticStack.pop();
     this.arithmeticStack.push("<T>");
   }
 
   reduce5() {
-    console.log("reduce5");
+    console.log(" REDUCE #5: DESAPILE (3), APILE '<P>', RETENGA ".bgGreen);
     this.arithmeticStack.pop();
     this.arithmeticStack.pop();
     this.arithmeticStack.pop();
@@ -729,7 +680,7 @@ class ArithmeticUtils {
   }
 
   reduce6() {
-    console.log("reduce6");
+    console.log(" REDUCE #6: DESAPILE (1), APILE '<P>', RETENGA ".bgGreen);
     this.arithmeticStack.pop();
     this.arithmeticStack.push("<P>");
   }
