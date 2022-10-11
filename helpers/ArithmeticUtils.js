@@ -45,6 +45,7 @@ class ArithmeticUtils {
   evaluateArithmeticExpression(characters) {
     console.table({
       hola: this.arithmeticExpressionHasValidCharacters(characters),
+      value: this.getComputedArithmeticExpressionCharacters(characters),
     });
     const computedCharacters =
       this.getComputedArithmeticExpressionCharacters(characters).concat("┤");
@@ -54,17 +55,18 @@ class ArithmeticUtils {
 
     let i = 0;
     do {
-      console.table({
-        computedCharacter: computedCharacters[i],
-        computedCharacters,
-        a: this.arithmeticStack.usep(),
-      });
+      // console.table({
+      //   computedCharacter: computedCharacters[i],
+      //   computedCharacters,
+      //   a: this.arithmeticStack.usep(),
+      // });
       switch (computedCharacters[i]) {
         case "+":
           switch (this.arithmeticStack.peek()) {
             case "<E>":
               // SHIFT
               this.arithmeticStack.push("+");
+              i++;
 
               break;
 
@@ -177,7 +179,7 @@ class ArithmeticUtils {
             case "<T>":
               // SHIFT
               this.arithmeticStack.push("*");
-
+              i++;
               break;
 
             case "<P>":
@@ -301,18 +303,19 @@ class ArithmeticUtils {
             case "+":
               // SHIFT
               this.arithmeticStack.push("(");
-
+              i++;
               break;
 
             case "*":
               // SHIFT
               this.arithmeticStack.push("(");
-
+              i++;
               break;
 
             case "(":
               // SHIFT
               this.arithmeticStack.push("(");
+              i++;
               break;
 
             case "I":
@@ -340,7 +343,7 @@ class ArithmeticUtils {
             case "▼":
               // SHIFT
               this.arithmeticStack.push("(");
-
+              i++;
               break;
 
             default:
@@ -386,19 +389,19 @@ class ArithmeticUtils {
             case "+":
               // SHIFT
               this.arithmeticStack.push("I");
-
+              i++;
               break;
 
             case "*":
               // SHIFT
               this.arithmeticStack.push("I");
-
+              i++;
               break;
 
             case "(":
               // SHIFT
               this.arithmeticStack.push("I");
-
+              i++;
               break;
 
             case "I":
@@ -426,7 +429,7 @@ class ArithmeticUtils {
             case "▼":
               // SHIFT
               this.arithmeticStack.push("I");
-
+              i++;
               break;
 
             default:
@@ -439,7 +442,7 @@ class ArithmeticUtils {
             case "<E>":
               // SHIFT
               this.arithmeticStack.push(")");
-
+              i++;
               break;
 
             case "<T>":
@@ -653,7 +656,7 @@ class ArithmeticUtils {
         default:
           break;
       }
-      i = i + 1;
+      // i = i + 1;
     } while (computedCharacters[i] !== "┤");
     // return [romanNumber, decimalValue, true];
     return [
@@ -666,10 +669,24 @@ class ArithmeticUtils {
 
   arithmeticExpressionHasValidCharacters(input) {
     const characters = input.replaceAll(" ", "");
-    return characters
-      .split("")
-      .every((char) => this.isNumber(char) || this.isOperator(char));
+    return (
+      characters
+        .split("")
+        .every((char) => this.isNumber(char) || this.isOperator(char)) &&
+      !this.hasRepeatedOperators(characters)
+    );
   }
+
+  hasRepeatedOperators = (characters) => {
+    const value = characters
+      .replaceAll(" ", "")
+      .replaceAll("-", "+")
+      .replaceAll("/", "*");
+
+    console.table({ AQUI: value });
+
+    return value.match("\\+\\+") || value.match("\\*\\*");
+  };
 
   isNumber = (char) => new RegExp(/[0-9]/).test(char);
 
