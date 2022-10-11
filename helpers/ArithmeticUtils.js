@@ -43,14 +43,15 @@ class ArithmeticUtils {
   }
 
   evaluateArithmeticExpression(characters) {
-    console.table({
-      hola: this.arithmeticExpressionHasValidCharacters(characters),
-      value: this.getComputedArithmeticExpressionCharacters(characters),
-    });
     const computedCharacters =
       this.getComputedArithmeticExpressionCharacters(characters).concat("┤");
     if (!this.arithmeticExpressionHasValidCharacters(characters)) {
-      return [characters.concat("┤"), [], "Syntax ERROR", false];
+      return [
+        characters.concat("┤"),
+        ["Invalid characters"],
+        "Syntax ERROR",
+        false,
+      ];
     }
 
     let i = 0;
@@ -600,9 +601,7 @@ class ArithmeticUtils {
         default:
           break;
       }
-      // i = i + 1;
     } while (computedCharacters[i] !== "┤");
-    // return [romanNumber, decimalValue, true];
     return [
       characters.concat("┤"),
       [],

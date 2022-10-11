@@ -3,16 +3,13 @@ const ArithmeticExpressionUtils = require("../helpers/ArithmeticUtils");
 
 class ArithmeticExpression {
   isValid = false;
-
   constructor(expression) {
     this.arithmeticUtils = new ArithmeticExpressionUtils();
-
-    this.id = uudiv4();
-    this.originalExpression = expression;
 
     const [originalExp, errorList, result, isValid] =
       this.arithmeticUtils.evaluateArithmeticExpression(expression);
 
+    this.originalExpression = originalExp;
     this.errorList = errorList;
     this.isValid = isValid;
     this.result = result;

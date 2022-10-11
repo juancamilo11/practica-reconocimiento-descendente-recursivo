@@ -1,5 +1,5 @@
 require("dotenv").config();
-const RomanNumbers = require("./models/ArithmeticExpressionList");
+const ArithmeticExpressionList = require("./models/ArithmeticExpressionList");
 const fs = require("fs");
 const transitionsTable = require("./documentation/transitions-table.json");
 const tableDebajosDe = require("./documentation/debajos-de-table.json");
@@ -10,7 +10,7 @@ require("colors");
 const main = async () => {
   let opt = "";
 
-  const arithmeticExpressions = new RomanNumbers();
+  const arithmeticExpressions = new ArithmeticExpressionList();
 
   do {
     // Print out the menu
@@ -28,7 +28,7 @@ const main = async () => {
         arithmeticExpressions.getArithmeticExpressions.forEach(
           (arithExpression, i) => {
             const index = `${i + 1}`.green;
-            const { id, originalExpression, errorList, result, isValid } =
+            const { originalExpression, errorList, result, isValid } =
               arithExpression;
             console.log(
               `${index}. ${` ${originalExpression} `.bgBlue} - ${
@@ -37,7 +37,8 @@ const main = async () => {
                   : " This expression is not correct ".bgRed
               } - ${
                 isValid ? `Result: ${result}`.green : `Result: ${result}`.red
-              }`
+              }
+              ${!isValid ? `  ERROR: ${errorList}`.red : ""}`
             );
           }
         );
